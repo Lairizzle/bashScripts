@@ -16,6 +16,7 @@ packages=(
   hypridle
   hyprlock
   hyprpaper
+	hyprshot
   mc
   firefox
   greetd-tuigreet
