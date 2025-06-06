@@ -90,7 +90,7 @@ echo "✅ Setup complete! greetd is configured for user '$username', Midnight Co
 read -rp "Would you like to reboot now to apply all changes? [y/N]: " answer
 if [[ "$answer" =~ ^[Yy]$ ]]; then
   echo "Rebooting..."
-  sudo reboot
+  sudo shutdown -r now
 else
   echo "Reboot skipped. Please reboot manually for changes to take effect."
 fi
