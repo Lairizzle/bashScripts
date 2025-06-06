@@ -15,6 +15,7 @@ packages=(
   hyprpaper
   mc
   firefox
+	git
 )
 
 # Function to install yay
