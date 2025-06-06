@@ -2,6 +2,9 @@
 
 set -e  # Exit immediately on error
 
+# Ask for the username to be used in /etc/greetd/config.toml
+read -rp "Enter your username (used in greetd config): " username
+
 # List of packages to install via pacman
 packages=(
   btop
@@ -15,7 +18,7 @@ packages=(
   hyprpaper
   mc
   firefox
-	git
+  greetd-tuigreet
 )
 
 # Function to install yay
@@ -56,4 +59,30 @@ cp -r "$temp_dir"/* "$HOME/.config/"
 
 rm -rf "$temp_dir"
 
-echo "✅ Setup complete! All packages installed and configs copied to ~/.config."
+# Create /etc/greetd/config.toml with the user's username
+echo "Creating /etc/greetd/config.toml..."
+sudo mkdir -p /etc/greetd
+
+sudo tee /etc/greetd/config.toml >/dev/null <<EOF
+[terminal]
+vt = 1
+
+[default_session]
+command = "tuigreet --cmd hyprland --theme 'title=yellow;border=gray;prompt=yellow;time=yellow;button=gray'"
+user = "$username"
+EOF
+
+# Disable sddm and enable greetd
+echo "Disabling sddm.service and enabling greetd.service..."
+sudo systemctl disable sddm.service
+sudo systemctl enable greetd.service
+
+# Prompt for reboot
+echo "✅ Setup complete! greetd is configured for user '$username' and sddm is disabled."
+read -rp "Would you like to reboot now to apply all changes? [y/N]: " answer
+if [[ "$answer" =~ ^[Yy]$ ]]; then
+  echo "Rebooting..."
+  sudo reboot
+else
+  echo "Reboot skipped. Please reboot manually for changes to take effect."
+fi
