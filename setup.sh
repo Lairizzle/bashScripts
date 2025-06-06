@@ -19,6 +19,7 @@ packages=(
   mc
   firefox
   greetd-tuigreet
+	ttf-jetbrains-mono-nerd
 )
 
 # Function to install yay
