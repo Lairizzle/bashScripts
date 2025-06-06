@@ -16,7 +16,6 @@ packages=(
   hypridle
   hyprlock
   hyprpaper
-	hyprshot
   mc
   firefox
   greetd-tuigreet
@@ -47,6 +46,8 @@ install_yay
 echo "Installing packages..."
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm --needed "${packages[@]}"
+
+yay -Syu hyprshot --noconfirm
 
 # Install Gruvbox skin for Midnight Commander
 echo "Installing gruvbox skin for Midnight Commander..."
