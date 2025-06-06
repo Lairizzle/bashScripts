@@ -45,6 +45,14 @@ echo "Installing packages..."
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm --needed "${packages[@]}"
 
+# Install Gruvbox skin for Midnight Commander
+echo "Installing gruvbox skin for Midnight Commander..."
+skin_temp=$(mktemp -d)
+git clone https://github.com/DmitriyMaksimovich/MidnightCommander-grovbox-port "$skin_temp"
+mkdir -p "$HOME/.local/share/mc/skins"
+cp "$skin_temp/gruvbox256.ini" "$HOME/.local/share/mc/skins/"
+rm -rf "$skin_temp"
+
 # Clone GruvDots and copy to ~/.config
 temp_dir=$(mktemp -d)
 
@@ -78,7 +86,7 @@ sudo systemctl disable sddm.service
 sudo systemctl enable greetd.service
 
 # Prompt for reboot
-echo "✅ Setup complete! greetd is configured for user '$username' and sddm is disabled."
+echo "✅ Setup complete! greetd is configured for user '$username', Midnight Commander skin installed, and sddm is disabled."
 read -rp "Would you like to reboot now to apply all changes? [y/N]: " answer
 if [[ "$answer" =~ ^[Yy]$ ]]; then
   echo "Rebooting..."
