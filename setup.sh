@@ -20,6 +20,7 @@ packages=(
   firefox
   greetd-tuigreet
 	ttf-jetbrains-mono-nerd
+	discord
 )
 
 # Function to install yay
