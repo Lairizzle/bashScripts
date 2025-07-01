@@ -6,7 +6,7 @@ echo "===> Arch PKGBUILD Generator & Installer (In-Repo Mode)"
 
 # Ensure we're inside a git repo
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    echo "❌ This directory is not a Git repository. Please run this from inside a cloned repo."
+    echo "This directory is not a Git repository. Please run this from inside a cloned repo."
     exit 1
 fi
 
@@ -82,7 +82,7 @@ cat >> PKGBUILD <<'EOF'
 EOF
   ;;
   *)
-    echo "❌ Unsupported build system: $build_system"
+    echo "Unsupported build system: $build_system"
     exit 1
     ;;
 esac
