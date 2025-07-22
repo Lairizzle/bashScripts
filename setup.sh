@@ -21,6 +21,8 @@ packages=(
   greetd-tuigreet
 	ttf-jetbrains-mono-nerd
 	discord
+	man
+	tealdeer
 )
 
 # Function to install yay
@@ -90,7 +92,7 @@ sudo systemctl disable sddm.service
 sudo systemctl enable greetd.service
 
 # Prompt for reboot
-echo "✅ Setup complete! greetd is configured for user '$username', Midnight Commander skin installed, and sddm is disabled."
+echo "Setup complete! greetd is configured for user '$username', Midnight Commander skin installed, and sddm is disabled."
 read -rp "Would you like to reboot now to apply all changes? [y/N]: " answer
 if [[ "$answer" =~ ^[Yy]$ ]]; then
   echo "Rebooting..."
