@@ -19,10 +19,12 @@ packages=(
   mc
   firefox
   greetd-tuigreet
-	ttf-jetbrains-mono-nerd
-	discord
-	man
-	tealdeer
+  ttf-jetbrains-mono-nerd
+  discord
+  man
+  tealdeer
+  unzip
+  npm
 )
 
 # Function to install yay
@@ -51,7 +53,7 @@ sudo pacman -S --noconfirm --needed "${packages[@]}"
 
 yay -Syu hyprshot --noconfirm
 
-# Install Gruvbox skin for Midnight Commander
+# Install Tokyo Night skin for Midnight Commander
 echo "Installing tokyonight skin for Midnight Commander..."
 skin_temp=$(mktemp -d)
 git clone https://github.com/Lairizzle/mc-tokyonight-skin "$skin_temp"
@@ -82,7 +84,7 @@ sudo tee /etc/greetd/config.toml >/dev/null <<EOF
 vt = 1
 
 [default_session]
-command = "tuigreet --cmd hyprland --theme --theme 'title=cyan;border=blue;prompt=cyan;time=magenta;button=gray'
+command = "tuigreet --cmd hyprland --theme --theme 'title=cyan;border=blue;prompt=cyan;time=magenta;button=gray'"
 user = "$username"
 EOF
 
