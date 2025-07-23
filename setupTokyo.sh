@@ -18,6 +18,7 @@ packages=(
   hyprpaper
   mc
   firefox
+  thunderbird
   greetd-tuigreet
   ttf-jetbrains-mono-nerd
   discord

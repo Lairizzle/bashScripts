@@ -18,11 +18,14 @@ packages=(
   hyprpaper
   mc
   firefox
+  thunderbird
   greetd-tuigreet
-	ttf-jetbrains-mono-nerd
-	discord
-	man
-	tealdeer
+  ttf-jetbrains-mono-nerd
+  discord
+  man
+  tealdeer
+  unzip
+  npm
 )
 
 # Function to install yay
