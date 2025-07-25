@@ -85,7 +85,7 @@ sudo tee /etc/greetd/config.toml >/dev/null <<EOF
 vt = 1
 
 [default_session]
-command = "tuigreet --cmd hyprland --theme --theme 'title=cyan;border=blue;prompt=cyan;time=magenta;button=gray'"
+command = "tuigreet --cmd hyprland --theme 'title=cyan;border=blue;prompt=cyan;time=magenta;button=gray'"
 user = "$username"
 EOF
 
