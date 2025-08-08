@@ -26,6 +26,7 @@ packages=(
   tealdeer
   unzip
   npm
+	starship
 )
 
 # Function to install yay
