@@ -30,5 +30,8 @@ tags: $formatted_tags
 ---
 EOF
 
+cd "$folder_name"
+nvim "index.md"
+
 echo "index.md created in $folder_name/"
 
