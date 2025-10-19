@@ -20,18 +20,19 @@ packages=(
   firefox
   thunderbird
   greetd-tuigreet
+  gnome-keyring
   ttf-jetbrains-mono-nerd
-	noto-fonts
-	noto-fonts-emoji
-	noto-fonts-extra
+  noto-fonts
+  noto-fonts-emoji
+  noto-fonts-extra
   discord
   man
   tealdeer
   unzip
   npm
   starship
-	zoxide
-	fzf
+  zoxide
+  fzf
 )
 
 # Function to install yay
