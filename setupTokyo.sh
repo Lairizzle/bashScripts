@@ -2,11 +2,9 @@
 
 set -e  # Exit immediately on error
 
-# Ask for the username to be used in /etc/greetd/config.toml
-read -rp "Enter your username (used in greetd config): " username
-
 # List of packages to install via pacman
 packages=(
+  ark
   btop
   dunst
   kitty
@@ -17,9 +15,7 @@ packages=(
   hyprlock
   hyprpaper
   mc
-  firefox
   thunderbird
-  greetd-tuigreet
   gnome-keyring
   ttf-jetbrains-mono-nerd
   noto-fonts
@@ -59,7 +55,9 @@ echo "Installing packages..."
 sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm --needed "${packages[@]}"
 
+yay -Syu brave-bin --noconfirm
 yay -Syu hyprshot --noconfirm
+yay -Syu protonup-qt --noconfirm
 
 # Install Tokyo Night skin for Midnight Commander
 echo "Installing tokyonight skin for Midnight Commander..."
@@ -82,24 +80,6 @@ echo "Copying config files to ~/.config..."
 cp -r "$temp_dir"/* "$HOME/.config/"
 
 rm -rf "$temp_dir"
-
-# Create /etc/greetd/config.toml with the user's username
-echo "Creating /etc/greetd/config.toml..."
-sudo mkdir -p /etc/greetd
-
-sudo tee /etc/greetd/config.toml >/dev/null <<EOF
-[terminal]
-vt = 1
-
-[default_session]
-command = "tuigreet --cmd hyprland --theme 'title=cyan;border=blue;prompt=cyan;time=magenta;button=gray'"
-user = "$username"
-EOF
-
-# Disable sddm and enable greetd
-echo "Disabling sddm.service and enabling greetd.service..."
-sudo systemctl disable sddm.service
-sudo systemctl enable greetd.service
 
 # Prompt for reboot
 echo "Setup complete! greetd is configured for user '$username', Midnight Commander skin installed, and sddm is disabled."
