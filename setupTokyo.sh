@@ -8,6 +8,9 @@ packages=(
   btop
   dunst
   kitty
+  hugo
+  vlc
+  vlc-plugins-all
   neovim
   rofi
   waybar
