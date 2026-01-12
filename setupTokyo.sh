@@ -15,7 +15,6 @@ packages=(
   hyprlock
   hyprpaper
   mc
-  thunderbird
   gnome-keyring
   ttf-jetbrains-mono-nerd
   noto-fonts
