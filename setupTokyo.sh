@@ -95,7 +95,7 @@ cp -r "$temp_dir"/* "$HOME/.config/"
 rm -rf "$temp_dir"
 
 # Prompt for reboot
-echo "Setup complete! greetd is configured for user '$username', Midnight Commander skin installed, and sddm is disabled."
+echo "Setup complete!"
 read -rp "Would you like to reboot now to apply all changes? [y/N]: " answer
 if [[ "$answer" =~ ^[Yy]$ ]]; then
   echo "Rebooting..."
