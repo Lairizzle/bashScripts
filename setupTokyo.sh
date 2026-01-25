@@ -6,31 +6,42 @@ set -e  # Exit immediately on error
 packages=(
   ark
   btop
+  discord
+  dotnet-sdk
   dunst
-  kitty
+  fzf
+  gimp
+  github-cli
+  godot-mono
+  gnome-keyring
   hugo
-  vlc
-  vlc-plugins-all
-  neovim
-  rofi
-  waybar
   hypridle
   hyprlock
   hyprpaper
+  kdenlive
+  kitty
+  lutris
+  man
   mc
-  gnome-keyring
-  ttf-jetbrains-mono-nerd
+  neovim
+  nextcloud-client
   noto-fonts
   noto-fonts-emoji
   noto-fonts-extra
-  discord
-  man
-  tealdeer
-  unzip
   npm
+  obs-studio
+  pavu-control
+  rofi
   starship
+  steam
+  tailscale
+  tealdeer
+  ttf-jetbrains-mono-nerd
+  unzip
+  vlc
+  vlc-plugins-all
+  waybar
   zoxide
-  fzf
 )
 
 # Function to install yay
