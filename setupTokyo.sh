@@ -36,11 +36,14 @@ packages=(
   steam
   tailscale
   tealdeer
+  thunar
+  thunar-archive-plugin
   ttf-jetbrains-mono-nerd
   unzip
   vlc
   vlc-plugins-all
   waybar
+  wiremix
   zoxide
 )
 
