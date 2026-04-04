@@ -8,16 +8,18 @@ packages=(
   btop
   discord
   dotnet-sdk
-  dunst
+  filezilla
   fzf
   gimp
   github-cli
   godot-mono
   gnome-keyring
+  gvfs
   hugo
   hypridle
   hyprlock
   hyprpaper
+  hyprshot
   kdenlive
   kitty
   lutris
@@ -32,8 +34,11 @@ packages=(
   obs-studio
   pavu-control
   rofi
+  rustup
+  spotify-launcher
   starship
   steam
+  swaync
   tailscale
   tealdeer
   thunar
@@ -45,6 +50,7 @@ packages=(
   waybar
   wiremix
   zoxide
+  sddm
 )
 
 # Function to install yay
@@ -72,7 +78,6 @@ sudo pacman -Syu --noconfirm
 sudo pacman -S --noconfirm --needed "${packages[@]}"
 
 yay -Syu brave-bin --noconfirm
-yay -Syu hyprshot --noconfirm
 yay -Syu protonup-qt --noconfirm
 
 # Install Tokyo Night skin for Midnight Commander
@@ -96,6 +101,27 @@ echo "Copying config files to ~/.config..."
 cp -r "$temp_dir"/* "$HOME/.config/"
 
 rm -rf "$temp_dir"
+
+# Install SDDM Midnight Crystal theme
+echo "Installing SDDM theme: midnight-crystal..."
+
+sddm_temp=$(mktemp -d)
+git clone https://github.com/Lairizzle/sddm "$sddm_temp"
+
+# Copy theme to system themes directory
+sudo mkdir -p /usr/share/sddm/themes
+sudo cp -r "$sddm_temp/midnight-crystal" /usr/share/sddm/themes/
+
+rm -rf "$sddm_temp"
+
+# Configure SDDM theme (clean override method)
+echo "Configuring SDDM to use midnight-crystal theme..."
+
+sudo mkdir -p /etc/sddm.conf.d
+sudo bash -c 'cat > /etc/sddm.conf.d/theme.conf <<EOF
+[Theme]
+Current=midnight-crystal
+EOF'
 
 # Prompt for reboot
 echo "Setup complete!"
