@@ -32,7 +32,7 @@ packages=(
   noto-fonts-extra
   npm
   obs-studio
-  pavu-control
+  pavucontrol
   rofi
   rustup
   spotify-launcher
