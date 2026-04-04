@@ -11,6 +11,7 @@ alias cpp14='clang++ -Wall -Wextra -std=c++14'
 alias weather='curl wttr.in/L7J1M9'
 alias cd='z'
 alias cdi='zi'
+alias update='yay -Syu'
 GREEN="$(tput setaf 2)"
 RESET="$(tput sgr0)"
 PS1="\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]\$ "
@@ -28,3 +29,5 @@ export EDITOR="nvim"
 export SUDO_EDITOR="nvim"
 eval "$(starship init bash)"
 eval "$(zoxide init bash)"
+
+export GOPATH=$HOME/.local/share/go
