@@ -102,6 +102,76 @@ cp -r "$temp_dir"/* "$HOME/.config/"
 
 rm -rf "$temp_dir"
 
+# ==============================
+# Configure Hyprland monitors (PRIMARY-BASED)
+# ==============================
+
+echo "Configuring Hyprland monitors..."
+
+HYPR_CONF="$HOME/.config/hypr/hyprland.conf"
+
+if [[ -f "$HYPR_CONF" ]]; then
+  echo "Detected hyprland.conf at $HYPR_CONF"
+
+  # Detect monitors
+  mapfile -t MONITOR_INFO < <(hyprctl monitors)
+
+  PRIMARY_MONITOR=$(hyprctl monitors | awk '/Monitor/ {name=$2} /focused: yes/ {print name}')
+
+  if [[ -z "$PRIMARY_MONITOR" ]]; then
+    echo "Could not detect primary monitor, falling back to first monitor..."
+    PRIMARY_MONITOR=$(hyprctl monitors | awk '/Monitor/ {print $2; exit}')
+  fi
+
+  echo "Primary monitor detected: $PRIMARY_MONITOR"
+
+  # ------------------------------
+  # Rewrite monitor= lines
+  # ------------------------------
+  monitor_lines=""
+
+  while read -r name res refresh pos scale; do
+    monitor_lines+="monitor=$name, ${res}@${refresh}, ${pos}, ${scale}\n"
+  done < <(
+    hyprctl monitors | awk '
+      /Monitor/ { name=$2 }
+      /resolution:/ { res=$2 }
+      /@/ { split($1,r,"@"); refresh=r[2] }
+      /position:/ { pos=$2 }
+      /scale:/ { scale=$2 }
+      /active workspace:/ {
+        print name, res, refresh, pos, scale
+      }
+    '
+  )
+
+  # Remove old monitor lines
+  sed -i '/^monitor=/d' "$HYPR_CONF"
+
+  # Insert new ones
+  sed -i "/### MONITORS ###/a $monitor_lines" "$HYPR_CONF"
+
+  # ------------------------------
+  # Force everything to primary
+  # ------------------------------
+
+  echo "Rewriting all monitor references to $PRIMARY_MONITOR"
+
+  # workspace monitor bindings
+  sed -i -E "s/(workspace *= *[0-9]+, *monitor:)[A-Za-z0-9\\-]+/\\1$PRIMARY_MONITOR/g" "$HYPR_CONF"
+
+  # focusmonitor binds
+  sed -i -E "s/(focusmonitor )[A-Za-z0-9\\-]+/\\1$PRIMARY_MONITOR/g" "$HYPR_CONF"
+
+  # window rules
+  sed -i -E "s/(windowrule *= *monitor )[A-Za-z0-9\\-]+/\\1$PRIMARY_MONITOR/g" "$HYPR_CONF"
+
+  echo "Hyprland monitor configuration updated (primary-based)."
+
+else
+  echo "hyprland.conf not found, skipping monitor configuration."
+fi
+
 # Install SDDM Midnight Crystal theme
 echo "Installing SDDM theme: midnight-crystal..."
 
