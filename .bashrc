@@ -12,6 +12,7 @@ alias weather='curl wttr.in/L7J1M9'
 alias cd='z'
 alias cdi='zi'
 alias update='yay -Syu'
+alias ls='eza -l --icons --color=always --group-directories-first --no-permissions --no-user'
 GREEN="$(tput setaf 2)"
 RESET="$(tput sgr0)"
 PS1="\[\e[32m\]\u@\h\[\e[0m\]:\[\e[34m\]\w\[\e[0m\]\$ "
