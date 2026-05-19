@@ -45,6 +45,7 @@ packages=(
   vlc-plugins-all
   waybar
   wiremix
+  xwayland-satellite
   zoxide
 )
 
